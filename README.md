@@ -8,7 +8,7 @@ This should hopefully be representative of a project that was quickly ported to 
 
 # Try it out
 
-#[https://justinmichaud.com/8bitbench/](https://justinmichaud.com/8bitbench/)
+[https://justinmichaud.com/8bitbench/](https://justinmichaud.com/8bitbench/)
 
 # Building
 
