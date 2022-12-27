@@ -26,7 +26,7 @@ self.update_video = function(vec) {
 function fetchRom() {
     return new Promise ((resolve) => {
         const req = new XMLHttpRequest()
-        req.open("GET", "/assets/rom.nes", true)
+        req.open("GET", "../assets/rom.nes", true)
         req.responseType = "arraybuffer"
 
         req.onload = (event) => {
