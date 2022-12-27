@@ -1,0 +1,14 @@
+[package]
+name = "emu_bench"
+version = "1.0.0"
+authors = ["Justin Michaud <justin@justinmichaud.com>"]
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+phf = { version = "0.11", default-features = false, features = ["macros"] }
+image = "0.24.5"
+dyn-clone = "1.0.10"
+wasm-bindgen = "0.2"
