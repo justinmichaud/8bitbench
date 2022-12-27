@@ -1,0 +1,16 @@
+{
+  "name": "emu_bench",
+  "collaborators": [
+    "Justin Michaud <justin@justinmichaud.com>"
+  ],
+  "version": "1.0.0",
+  "license": "MIT",
+  "files": [
+    "emu_bench_bg.wasm",
+    "emu_bench.js",
+    "emu_bench.d.ts"
+  ],
+  "module": "emu_bench.js",
+  "types": "emu_bench.d.ts",
+  "sideEffects": false
+}
