@@ -1,4 +1,6 @@
 const canvas = document.getElementById("canvas")
+let ctx = canvas.getContext("2d")
+const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
 if (!crossOriginIsolated)
     throw "CORS check failed"
@@ -6,15 +8,19 @@ if (!crossOriginIsolated)
 const worker = new Worker("js/worker.js", {
     type: 'module'
 })
-const sab = new SharedArrayBuffer(4 * 256 * 240);
+const sab = new SharedArrayBuffer(Int16Array.BYTES_PER_ELEMENT * 4 * 256 * 240);
+let arr = new Int16Array(sab)
+worker.onmessage = ({ data: { frames, ms } }) => {
+    alert("Emulation completed with average ms per frame of " + ((0.0 + ms) / frames));
+}
 worker.postMessage(sab);
 
 function update() {
-    const imageData = self.ctx.getImageData(0, 0, self.canvas.width, self.canvas.height);
     const data = imageData.data;
-    for (let i = 0; i < self.length; ++i) {
-        data[i] = sab[i]
+    for (let i = 0; i < arr.length; ++i) {
+        data[i] = arr[i]
     }
-    self.ctx.putImageData(imageData, 0, 0);
+    ctx.putImageData(imageData, 0, 0);
     requestAnimationFrame(update)
 }
+update()

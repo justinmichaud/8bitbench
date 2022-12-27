@@ -49,15 +49,18 @@ async function run() {
     let rom = await fetchRom()
     load_rom(rom)
 
-    let frames = 0
-    while (true) {
+    let frames = 5 * 60
+    let start = Date.now()
+    for (let i = 0; i < frames; ++i) {
         tick()
-        ++frames
     }
+    let end = Date.now()
+
+    postMessage({ ms: end - start, frames })
 }
 
 addEventListener('message', e => {
-    self.buffer = e.data.buffer
+    self.buffer = new Int16Array(e.data)
 
     run()
 })

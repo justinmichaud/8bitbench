@@ -15,8 +15,7 @@ wasm-pack build --target web
 From root:
 
 ```
-npm install http-server -g
-http-server -p 8000 --cors
+python3 -m http.server
 ```
 
 Then go to `http://localhost:8000`
@@ -58,6 +57,8 @@ SOFTWARE.
 - wasm-bindgen: MIT https://github.com/rustwasm/wasm-bindgen
 
 - wasm-pack: MIT https://github.com/rustwasm/wasm-pack
+
+- coi-serviceworker: MIT https://github.com/gzuidhof/coi-serviceworker
 
 # Licence for rom file
 
