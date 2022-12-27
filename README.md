@@ -1,6 +1,14 @@
 # WasmEmu
 
-A simple 8-bit emulator targeting wasm, written is rust.
+A simple 8-bit emulator targeting wasm, written in rust, and designed as a microbenchmark for wasm engines.
+
+This is a port of a project that I wrote in my first year of uni to learn rust. As such, the code is not particularily nice or effeicient.
+
+This should hopefully be representative of a project that was quickly ported to wasm, without any optimization effort and without any biases towards the performance characteristics of wasm engines of today.
+
+# Try it out
+
+#[https://justinmichaud.com/8bitbench/](https://justinmichaud.com/8bitbench/)
 
 # Building
 
