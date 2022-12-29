@@ -1,5 +1,5 @@
 // Wasm glue code from https://rustwasm.github.io/docs/wasm-bindgen/examples/without-a-bundler.html
-import init, { tick, load_rom } from '../rust/pkg/emu_bench.js'
+import init, { tick, loadRom } from '../rust/pkg/emu_bench.js'
 
 if (!crossOriginIsolated)
     throw "CORS check failed"
@@ -13,11 +13,11 @@ function log(str) {
 
 self.log = log
 
-self.get_input = function() {
+self.getInput = function() {
     return "t"
 }
 
-self.update_video = function(vec) {
+self.updateVideo = function(vec) {
     for (let i = 0; i < self.buffer.length; ++i) {
         self.buffer[i] = vec[i]
     }
@@ -47,7 +47,7 @@ function fetchRom() {
 async function run() {
     await init()
     let rom = await fetchRom()
-    load_rom(rom)
+    loadRom(rom)
 
     let frames = 5 * 60
     let start = Date.now()
@@ -55,6 +55,9 @@ async function run() {
         tick()
     }
     let end = Date.now()
+
+    if (self.buffer.length != 256 * 240 * 4)
+        throw "Length is wrong"
 
     postMessage({ ms: end - start, frames })
 }

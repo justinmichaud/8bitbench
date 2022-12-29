@@ -100,10 +100,10 @@ function passArray8ToWasm0(arg, malloc) {
 /**
 * @param {Uint8Array} file
 */
-export function load_rom(file) {
+export function loadRom(file) {
     const ptr0 = passArray8ToWasm0(file, wasm.__wbindgen_malloc);
     const len0 = WASM_VECTOR_LEN;
-    wasm.load_rom(ptr0, len0);
+    wasm.loadRom(ptr0, len0);
 }
 
 /**
@@ -146,18 +146,18 @@ async function load(module, imports) {
 function getImports() {
     const imports = {};
     imports.wbg = {};
-    imports.wbg.__wbg_log_e2df2445d621d4ed = function(arg0, arg1) {
+    imports.wbg.__wbg_log_0c1cf5a571c1a0ca = function(arg0, arg1) {
         log(getStringFromWasm0(arg0, arg1));
     };
-    imports.wbg.__wbg_getinput_be9f06bdbe455edc = function(arg0) {
-        const ret = get_input();
+    imports.wbg.__wbg_getInput_5fe2acd6b0cdc0fc = function(arg0) {
+        const ret = getInput();
         const ptr0 = passStringToWasm0(ret, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
         getInt32Memory0()[arg0 / 4 + 1] = len0;
         getInt32Memory0()[arg0 / 4 + 0] = ptr0;
     };
-    imports.wbg.__wbg_updatevideo_86397417b96674b9 = function(arg0, arg1) {
-        update_video(getArrayU8FromWasm0(arg0, arg1));
+    imports.wbg.__wbg_updateVideo_e31fabf62b1c5896 = function(arg0, arg1) {
+        updateVideo(getArrayU8FromWasm0(arg0, arg1));
     };
     imports.wbg.__wbindgen_throw = function(arg0, arg1) {
         throw new Error(getStringFromWasm0(arg0, arg1));

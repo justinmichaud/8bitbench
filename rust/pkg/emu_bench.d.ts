@@ -6,7 +6,7 @@ export function main(): void;
 /**
 * @param {Uint8Array} file
 */
-export function load_rom(file: Uint8Array): void;
+export function loadRom(file: Uint8Array): void;
 /**
 */
 export function tick(): void;
@@ -16,7 +16,7 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly main: () => void;
-  readonly load_rom: (a: number, b: number) => void;
+  readonly loadRom: (a: number, b: number) => void;
   readonly tick: () => void;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
