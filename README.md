@@ -58,6 +58,7 @@ Results on M1:
 
 JSC (CLI & worker): 2.3 ms/frame
 Chrome / Node: 1.5 ms/frame
+Native: 0.9 ms / frame
 
 # Licence
 
