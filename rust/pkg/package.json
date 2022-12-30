@@ -12,6 +12,5 @@
   ],
   "module": "emu_bench.js",
   "types": "emu_bench.d.ts",
-  "sideEffects": false,
-  "type": "module"
+  "sideEffects": false
 }

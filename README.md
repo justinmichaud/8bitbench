@@ -25,6 +25,15 @@ wasm-pack build --target web --release
 Add "type": "module" to rust/pkg/package.json
 ```
 
+# Building the rom file
+
+This ensures that the assembler is also availible under an appropriate licence.
+
+```
+assets/nesdoug
+make
+``
+
 # Running
 
 Worker version (from root):
@@ -58,12 +67,13 @@ node cli.mjs
 
 Results on M1:
 
-JSC (CLI & worker): 2.3 ms/frame
-Chrome / Node: 1.5 ms/frame
-Native: 0.9 ms / frame
+- JSC (CLI & worker): 2.3 ms/frame
+- Chrome / Node: 1.5 ms/frame
+- Native: 0.9 ms / frame
 
 # Licence
 
+```
 MIT License
 
 Copyright (c) 2023 Justin Michaud
@@ -85,6 +95,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+```
 
 # Licence for dependencies
 
@@ -108,4 +119,4 @@ SOFTWARE.
 
 Assembler: Zlib https://github.com/cc65/cc65
 
-Falling: MIT https://github.com/xram64/falling-nes
+NESDOUG: MIT https://github.com/nesdoug/26_Full_Game
