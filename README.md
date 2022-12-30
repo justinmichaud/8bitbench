@@ -15,18 +15,49 @@ This should hopefully be representative of a project that was quickly ported to 
 ```
 cd rust
 cargo install wasm-pack
-wasm-pack build --target web
+wasm-pack build --target web --release
+Add "type": "module" to rust/pkg/package.json
 ```
 
 # Running
 
-From root:
+Worker version (from root):
 
 ```
 python3 -m http.server
 ```
 
 Then go to `http://localhost:8000`
+
+Sync browser version:
+
+TODO
+
+Native version:
+
+```
+cd rust/
+cargo run --release
+```
+
+JSC CLI:
+
+```
+jsc -m cli.mjs
+```
+
+Node:
+
+```
+node cli.mjs
+```
+
+# Results
+
+Results on M1:
+
+JSC (CLI & worker): 2.3 ms/frame
+Chrome / Node: 1.5 ms/frame
 
 # Licence
 
@@ -67,6 +98,8 @@ SOFTWARE.
 - wasm-pack: MIT https://github.com/rustwasm/wasm-pack
 
 - coi-serviceworker: MIT https://github.com/gzuidhof/coi-serviceworker
+
+- (for cli) fast-text-encoding: Apache https://github.com/samthor/fast-text-encoding
 
 # Licence for rom file
 
