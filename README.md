@@ -10,6 +10,13 @@ This should hopefully be representative of a project that was quickly ported to 
 
 [https://justinmichaud.com/8bitbench/](https://justinmichaud.com/8bitbench/)
 
+# TODO
+
+- Build rom from source
+- Better perf stats collection
+- Warmup
+- Verify resulting image
+
 # Building
 
 ```
@@ -28,10 +35,6 @@ python3 -m http.server
 ```
 
 Then go to `http://localhost:8000`
-
-Sync browser version:
-
-TODO
 
 Native version:
 
