@@ -34,7 +34,7 @@ This ensures that the assembler is also availible under an appropriate licence.
 ```
 assets/nesdoug
 make
-``
+```
 
 # Running
 
