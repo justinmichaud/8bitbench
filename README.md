@@ -23,9 +23,10 @@ This should hopefully be representative of a project that was quickly ported to 
 ```
 cd rust
 cargo install wasm-pack
-wasm-pack build --target web --release
-Add "type": "module" to rust/pkg/package.json
+FLAGS="-C target-feature=+simd128" RUSTFLAGS="$FLAGS" wasm-pack build --target web --release
 ```
+
+Then add `"type": "module"` to rust/pkg/package.json (to support node)
 
 # Building the rom file
 
