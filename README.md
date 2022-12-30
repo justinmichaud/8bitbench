@@ -6,6 +6,8 @@ This is a port of a project that I wrote in my first year of uni to learn rust. 
 
 This should hopefully be representative of a project that was quickly ported to wasm, without any optimization effort and without any biases towards the performance characteristics of wasm engines of today.
 
+![](/screenshot.png?raw=true)
+
 # Try it out
 
 [https://justinmichaud.com/8bitbench/](https://justinmichaud.com/8bitbench/)
