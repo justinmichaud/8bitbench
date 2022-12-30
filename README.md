@@ -12,7 +12,6 @@ This should hopefully be representative of a project that was quickly ported to 
 
 # TODO
 
-- Build rom from source
 - Better perf stats collection
 - Warmup
 - Verify resulting image
@@ -107,4 +106,6 @@ SOFTWARE.
 
 # Licence for rom file
 
-TODO on this one
+Assembler: Zlib https://github.com/cc65/cc65
+
+Falling: MIT https://github.com/xram64/falling-nes
