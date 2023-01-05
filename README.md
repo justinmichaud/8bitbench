@@ -102,6 +102,8 @@ SOFTWARE.
 
 # Licence for dependencies
 
+Some dependencies located in-tree have been modified.
+
 - Emscripten: MIT https://github.com/emscripten-core/emsdk/blob/main/LICENSE
 
 - PHF: MIT https://github.com/rust-phf/rust-phf
@@ -128,7 +130,7 @@ NESDOUG: MIT https://github.com/nesdoug/26_Full_Game
 
 # Transitive dependencies
 
-TODO
+Rust module:
 
 ```
 emu_bench v1.0.0 (/Volumes/WebKit/8bitbench/rust)
@@ -251,4 +253,23 @@ emu_bench v1.0.0 (/Volumes/WebKit/8bitbench/rust)
 │   │   └── syn v1.0.107 (*)
 │   └── phf_shared v0.11.1 (*)
 └── wasm-bindgen v0.2.83 (*)
+
+% cargo lichking list
+MIT: color_quant, crunchy, emu_bench, image, memoffset, phf, phf_generator, phf_macros, phf_shared, scoped_threadpool, spin, tiff
+BSD-3-Clause: exr, lebe
+Zlib: nanorand
+Unlicense / MIT: byteorder
+0BSD / MIT / Apache-2.0: adler
+MIT / Apache-2.0: bit_field, bitflags, bumpalo, cfg-if, console_error_panic_hook, crc32fast, crossbeam-channel, crossbeam-deque, crossbeam-epoch, crossbeam-utils, dyn-clone, either, flate2, flume, futures-core, futures-sink, getrandom, gif, half, hermit-abi, jpeg-decoder, js-sys, libc, lock_api, log, num-integer, num-rational, num-traits, num_cpus, once_cell, pin-project, pin-project-internal, png, proc-macro2, quote, rand, rand_core, rayon, rayon-core, scopeguard, siphasher, smallvec, syn, threadpool, wasm-bindgen, wasm-bindgen-backend, wasm-bindgen-macro, wasm-bindgen-macro-support, wasm-bindgen-shared, weezl
+MIT / Apache-2.0 / Apache-2.0 WITH LLVM-exception: wasi
+MIT / Apache-2.0 / Zlib: bytemuck, miniz_oxide
+(MIT / Apache-2.0) AND Unicode-DFS-2016: unicode-ident
 ```
+
+JS Libs:
+
+Coi-serviceworker and fast-text-encoding have no release dependencies.
+
+6502 Toolchain:
+
+All dependencies are in-tree.
