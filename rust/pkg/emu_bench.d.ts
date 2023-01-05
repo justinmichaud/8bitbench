@@ -18,6 +18,7 @@ export interface InitOutput {
   readonly main: () => void;
   readonly loadRom: (a: number, b: number) => void;
   readonly tick: () => void;
+  readonly __wbindgen_free: (a: number, b: number) => void;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
   readonly __wbindgen_start: () => void;

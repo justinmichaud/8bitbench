@@ -21,7 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-
+extern crate console_error_panic_hook;
 extern crate wasm_bindgen;
 extern crate phf;
 extern crate image;
@@ -64,6 +64,7 @@ use benchmark::Driver;
 // Called when the module is loaded
 #[wasm_bindgen(start)]
 pub fn main() -> Result<(), JsValue> {
+    console_error_panic_hook::set_once();
     WebDriver.log("Loaded wasm module.");
     Ok(())
 }

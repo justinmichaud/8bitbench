@@ -12,6 +12,7 @@ phf = { version = "0.11", default-features = false, features = ["macros"] }
 image = "0.24.5"
 dyn-clone = "1.0.10"
 wasm-bindgen = "0.2"
+console_error_panic_hook = "0.1.7"
 
 [profile.release]
 lto = true
