@@ -51,7 +51,7 @@ function loadFile(path) {
 }
 self.loadFile = loadFile
 
-function fetchRom() { return loadFile("./assets/nesdoug/full_game.nes") }
+function fetchRom() { return loadFile("./assets/tutorial/full_game.bin") }
 self.fetchRom = fetchRom
 
 async function runCLI() {

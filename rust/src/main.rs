@@ -29,9 +29,9 @@ extern crate image;
 extern crate dyn_clone;
 
 mod cpu;
-mod ines;
+mod binloader;
 mod controller;
-mod nes;
+mod console;
 mod memory;
 mod ppu;
 mod mapper_0;
@@ -54,11 +54,11 @@ pub fn native_load_rom(file: &[u8]) {
 }
 
 pub fn native_tick() {
-    benchmark::tick(&mut NativeDriver)
+    benchmark::bench_tick(&mut NativeDriver)
 }
 
 pub fn main() {
-    let rom = std::fs::read("../assets/nesdoug/full_game.nes").unwrap();
+    let rom = std::fs::read("../assets/tutorial/full_game.bin").unwrap();
     native_load_rom(&rom);
 
     let frames = 5 * 60;

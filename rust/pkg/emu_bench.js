@@ -137,8 +137,8 @@ export function loadRom(file) {
 
 /**
 */
-export function tick() {
-    wasm.tick();
+export function js_tick() {
+    wasm.js_tick();
 }
 
 async function load(module, imports) {

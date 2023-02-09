@@ -24,14 +24,14 @@ SOFTWARE.
 
 // The main driving code for both native and web versions
 
-use nes::Nes;
+use console::Console;
 use ppu;
-use ppu::NesImageBuffer;
-use ines;
+use ppu::ConsoleImageBuffer;
+use binloader;
 
 struct App {
-    nes: Nes,
-    canvas: NesImageBuffer,
+    console: Console,
+    canvas: ConsoleImageBuffer,
     video: Vec<u8>,
 }
 
@@ -44,45 +44,45 @@ pub trait Driver {
 }
 
 pub fn load_rom(file: &[u8]) {
-    let (flags, prg, chr) = ines::load_file(file);
-    let nes = Nes::new(prg, chr, flags.mapper, flags.prg_ram_size, flags.horiz_mirroring);
+    let (flags, prg, chr) = binloader::load_file(file);
+    let console = Console::new(prg, chr, flags.mapper, flags.prg_ram_size, flags.horiz_mirroring);
     let canvas = ppu::make_canvas(256, 240);
     unsafe {
-        APP = Some(App { nes, canvas, video: Vec::new() });
+        APP = Some(App { console, canvas, video: Vec::new() });
     }
 }
 
-pub fn tick(driver: &mut dyn Driver) {
+pub fn bench_tick(driver: &mut dyn Driver) {
     let input = driver.get_input();
 
     unsafe {
         let app = &mut APP.as_mut().unwrap();
 
-        app.nes.chipset.controller1.up = false;
-        app.nes.chipset.controller1.left = false;
-        app.nes.chipset.controller1.down = false;
-        app.nes.chipset.controller1.right = false;
-        app.nes.chipset.controller1.a = false;
-        app.nes.chipset.controller1.b = false;
-        app.nes.chipset.controller1.start = false;
-        app.nes.chipset.controller1.select = false;
+        app.console.chipset.controller1.up = false;
+        app.console.chipset.controller1.left = false;
+        app.console.chipset.controller1.down = false;
+        app.console.chipset.controller1.right = false;
+        app.console.chipset.controller1.a = false;
+        app.console.chipset.controller1.b = false;
+        app.console.chipset.controller1.start = false;
+        app.console.chipset.controller1.select = false;
 
         for c in input.chars() {
             match c {
-                'u' => app.nes.chipset.controller1.up = true,
-                'l' => app.nes.chipset.controller1.left = true,
-                'd' => app.nes.chipset.controller1.down = true,
-                'r' => app.nes.chipset.controller1.right = true,
-                'a' => app.nes.chipset.controller1.a = true,
-                'b' => app.nes.chipset.controller1.b = true,
-                't' => app.nes.chipset.controller1.start = true,
-                'e' => app.nes.chipset.controller1.select = true,
+                'u' => app.console.chipset.controller1.up = true,
+                'l' => app.console.chipset.controller1.left = true,
+                'd' => app.console.chipset.controller1.down = true,
+                'r' => app.console.chipset.controller1.right = true,
+                'a' => app.console.chipset.controller1.a = true,
+                'b' => app.console.chipset.controller1.b = true,
+                't' => app.console.chipset.controller1.start = true,
+                'e' => app.console.chipset.controller1.select = true,
                 _ => { }
             }
         }
 
-        app.nes.tick();
-        app.nes.prepare_draw(&mut app.canvas);
+        app.console.console_tick();
+        app.console.prepare_draw(&mut app.canvas);
 
         app.video = app.canvas.as_raw().to_vec();
         driver.update_video(&app.video.as_slice());

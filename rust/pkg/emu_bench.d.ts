@@ -9,7 +9,7 @@ export function main(): void;
 export function loadRom(file: Uint8Array): void;
 /**
 */
-export function tick(): void;
+export function js_tick(): void;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
@@ -17,7 +17,7 @@ export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly main: () => void;
   readonly loadRom: (a: number, b: number) => void;
-  readonly tick: () => void;
+  readonly js_tick: () => void;
   readonly __wbindgen_free: (a: number, b: number) => void;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;

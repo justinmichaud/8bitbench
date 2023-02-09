@@ -28,7 +28,7 @@ use std::cmp;
 use image;
 use memory::*;
 
-pub type NesImageBuffer = image::ImageBuffer<image::Rgba<u8>, Vec<u8>>;
+pub type ConsoleImageBuffer = image::ImageBuffer<image::Rgba<u8>, Vec<u8>>;
 
 static VBL: u32 = 21;
 static PALETTE: [u8; 192] = [
@@ -155,7 +155,7 @@ pub struct Ppu {
     sprite_0_hit: bool,
     vertical_blanking: bool,
 
-    pub output_canvas: NesImageBuffer,
+    pub output_canvas: ConsoleImageBuffer,
     sprite_output: [[u16; 30*8]; 32*8],
     bg_output: [[u16; 30*8]; 32*8],
     sprite_priority: [[bool; 30*8]; 32*8],
@@ -350,7 +350,7 @@ impl Ppu {
         }
     }
 
-    pub fn tick(&mut self, cpu: &mut Cpu, mapper: &mut Box<dyn Mapper>) {
+    pub fn ppu_tick(&mut self, cpu: &mut Cpu, mapper: &mut Box<dyn Mapper>) {
         let y = cpu.count*3/341;
 
         while self.last_ticked_scanline < y && self.last_ticked_scanline < 262 && (cpu.count*3)%341 > 260 {
@@ -654,7 +654,7 @@ impl Ppu {
     }
 }
 
-pub fn make_canvas(width: u32, height: u32) -> NesImageBuffer {
+pub fn make_canvas(width: u32, height: u32) -> ConsoleImageBuffer {
     image::ImageBuffer::new(width, height)
 }
 

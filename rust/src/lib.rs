@@ -28,9 +28,9 @@ extern crate image;
 extern crate dyn_clone;
 
 mod cpu;
-mod ines;
+mod binloader;
 mod controller;
-mod nes;
+mod console;
 mod memory;
 mod ppu;
 mod mapper_0;
@@ -74,7 +74,7 @@ pub fn js_load_rom(file: &[u8]) {
     benchmark::load_rom(file)
 }
 
-#[wasm_bindgen(js_name = tick)]
+#[wasm_bindgen(js_name = js_tick)]
 pub fn js_tick() {
-    benchmark::tick(&mut WebDriver)
+    benchmark::bench_tick(&mut WebDriver)
 }

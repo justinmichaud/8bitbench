@@ -54,7 +54,7 @@ global.updateVideo = function(vec) {
 async function run(optionalWasm) {
     const pkg = await import('../rust/pkg/emu_bench.js')
     const init = pkg.default
-    const { loadRom, tick } = pkg
+    const { loadRom, js_tick } = pkg
 
     await init(optionalWasm)
     let rom = await fetchRom()
@@ -63,7 +63,7 @@ async function run(optionalWasm) {
     let frames = 5 * 60
     let start = Date.now()
     for (let i = 0; i < frames; ++i) {
-        tick()
+        js_tick()
     }
     let end = Date.now()
 

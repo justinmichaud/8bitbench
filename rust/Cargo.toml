@@ -14,6 +14,10 @@ dyn-clone = "1.0.10"
 wasm-bindgen = "0.2"
 console_error_panic_hook = "0.1.7"
 
+[profile.dev]
+lto = true
+opt-level = 3
+
 [profile.release]
 lto = true
 opt-level = 3

@@ -33,7 +33,7 @@ Then add `"type": "module"` to rust/pkg/package.json (to support node)
 This ensures that the assembler is also availible under an appropriate licence.
 
 ```
-assets/nesdoug
+assets/tutorial
 make
 ```
 

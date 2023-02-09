@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-use nes::Chipset;
+use console::Chipset;
 use phf::Map;
 use std::fmt;
 
@@ -815,7 +815,7 @@ impl Cpu {
         self.carry          = val&0b00000001>0;
     }
 
-    pub fn tick(&mut self, mem: &mut Chipset) {
+    pub fn cpu_tick(&mut self, mem: &mut Chipset) {
         //println!("{:X}", self.pc);
         let op = mem.read(self.pc);
         self.pc = self.pc.wrapping_add(1);

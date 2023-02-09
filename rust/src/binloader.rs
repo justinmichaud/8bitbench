@@ -22,45 +22,36 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-if (!crossOriginIsolated)
-    throw "CORS check failed"
-
-function log(str) {
-    console.log(str)
-}
-self.log = log
-
-function loadFile(path) {
-    return new Promise ((resolve) => {
-        const req = new XMLHttpRequest()
-        req.open("GET", path, true)
-        req.responseType = "arraybuffer"
-
-        req.onload = (event) => {
-            const arrayBuffer = req.response
-            if (arrayBuffer) {
-                const byteArray = new Uint8Array(arrayBuffer)
-                log("Got file " + path + " with length: " + byteArray.length)
-                resolve(byteArray)
-            } else {
-                throw "Unable to fetch input ROM"
-            }
-        }
-
-        req.send(null)
-    })
-}
-self.loadFile = loadFile
-
-function fetchRom() { return loadFile("../assets/tutorial/full_game.bin") }
-self.fetchRom = fetchRom
-
-async function runWithSAB(sab) {
-    self.video = new Int16Array(sab)
-    await import('./bench.js')
-    postMessage(await self.run())
+#[derive(Debug)]
+pub struct Flags {
+    prg_size: usize,
+    chr_size: usize,
+    pub prg_ram_size: usize,
+    pub mapper: u8,
+    pub horiz_mirroring: bool,
+    magic: bool
 }
 
-addEventListener('message', e => {
-    runWithSAB(e.data)
-})
+pub fn load_file(contents: &[u8]) -> (Flags, Vec<u8>, Vec<u8>) {
+    let flags = Flags {
+        prg_size: contents[4] as usize * 16384,
+        chr_size: contents[5] as usize * 8192,
+        prg_ram_size: 8192 as usize,
+        mapper: (contents[6] & 0b11110000)>>4 + (contents[7] & 0b11110000),
+        horiz_mirroring: (contents[6] & 0b00000001) == 0,
+        magic: (contents[7] & 0b00001100)>>2 == 2
+    };
+
+    if flags.magic {
+        panic!("format not supported");
+    }
+
+    if flags.mapper != 0 {
+        panic!("mapper 0 is only suported mapper");
+    }
+
+    let prg = &contents[16..(16+flags.prg_size)];
+    let chr = &contents[(16+flags.prg_size)..(16+flags.prg_size+flags.chr_size)];
+
+    (flags, prg.to_vec(), chr.to_vec())
+}
