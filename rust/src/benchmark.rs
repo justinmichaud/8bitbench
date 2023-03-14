@@ -45,7 +45,7 @@ pub trait Driver {
 
 pub fn load_rom(file: &[u8]) {
     let (flags, prg, chr) = binloader::load_file(file);
-    let console = Console::new(prg, chr, flags.mapper, flags.prg_ram_size, flags.horiz_mirroring);
+    let console = Console::new(prg, chr, 0, flags.prg_ram_size, flags.horiz_mirroring);
     let canvas = ppu::make_canvas(256, 240);
     unsafe {
         APP = Some(App { console, canvas, video: Vec::new() });

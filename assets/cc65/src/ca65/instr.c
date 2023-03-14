@@ -159,14 +159,15 @@ static const struct {
 } InsTab6502 = {
     sizeof (InsTab6502.Ins) / sizeof (InsTab6502.Ins[0]),
     {
-        { "ADC",  0x080A26C, 0x60, 0, PutAll },
+        // 8bitbench change: swap opcodes around to break compatability
+        { "ADC",  0x080A26C, 0xc0, 0, PutAll }, // HERE
         { "AND",  0x080A26C, 0x20, 0, PutAll },
         { "ASL",  0x000006e, 0x02, 1, PutAll },
         { "BCC",  0x0020000, 0x90, 0, PutPCRel8 },
         { "BCS",  0x0020000, 0xb0, 0, PutPCRel8 },
-        { "BEQ",  0x0020000, 0xf0, 0, PutPCRel8 },
+        { "BEQ",  0x0020000, 0x30, 0, PutPCRel8 }, // HERE
         { "BIT",  0x000000C, 0x00, 2, PutAll },
-        { "BMI",  0x0020000, 0x30, 0, PutPCRel8 },
+        { "BMI",  0x0020000, 0xf0, 0, PutPCRel8 }, // HERE
         { "BNE",  0x0020000, 0xd0, 0, PutPCRel8 },
         { "BPL",  0x0020000, 0x10, 0, PutPCRel8 },
         { "BRK",  0x0000001, 0x00, 0, PutAll },
@@ -176,9 +177,9 @@ static const struct {
         { "CLD",  0x0000001, 0xd8, 0, PutAll },
         { "CLI",  0x0000001, 0x58, 0, PutAll },
         { "CLV",  0x0000001, 0xb8, 0, PutAll },
-        { "CMP",  0x080A26C, 0xc0, 0, PutAll },
-        { "CPX",  0x080000C, 0xe0, 1, PutAll },
-        { "CPY",  0x080000C, 0xc0, 1, PutAll },
+        { "CMP",  0x080A26C, 0x60, 0, PutAll }, // HERE
+        { "CPX",  0x080000C, 0xc0, 1, PutAll }, // HERE
+        { "CPY",  0x080000C, 0xe0, 1, PutAll }, // HERE
         { "DEC",  0x000006C, 0x00, 3, PutAll },
         { "DEX",  0x0000001, 0xca, 0, PutAll },
         { "DEY",  0x0000001, 0x88, 0, PutAll },
@@ -200,8 +201,8 @@ static const struct {
         { "PLP",  0x0000001, 0x28, 0, PutAll },
         { "ROL",  0x000006F, 0x22, 1, PutAll },
         { "ROR",  0x000006F, 0x62, 1, PutAll },
-        { "RTI",  0x0000001, 0x40, 0, PutAll },
-        { "RTS",  0x0000001, 0x60, 0, PutAll },
+        { "RTI",  0x0000001, 0x60, 0, PutAll }, // HERE
+        { "RTS",  0x0000001, 0x40, 0, PutAll }, // HERE
         { "SBC",  0x080A26C, 0xe0, 0, PutAll },
         { "SEC",  0x0000001, 0x38, 0, PutAll },
         { "SED",  0x0000001, 0xf8, 0, PutAll },

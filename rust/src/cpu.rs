@@ -74,14 +74,14 @@ type ALUOperation = fn(&mut Cpu, &mut Chipset, AddressMode) -> ();
 
 const OPCODES: Map<u8, (ALUOperation, AddressMode)> = phf::phf_map!{
     // ADC
-    0x69u8 => (adc, immediate),
-    0x65u8 => (adc, zero_page),
-    0x75u8 => (adc, zero_page_x),
-    0x6Du8 => (adc, absolute),
-    0x7Du8 => (adc, absolute_x),
-    0x79u8 => (adc, absolute_y),
-    0x61u8 => (adc, indirect_x),
-    0x71u8 => (adc, indirect_y),
+    0xc9u8 => (adc, immediate),
+    0xc5u8 => (adc, zero_page),
+    0xd5u8 => (adc, zero_page_x),
+    0xcDu8 => (adc, absolute),
+    0xdDu8 => (adc, absolute_x),
+    0xd9u8 => (adc, absolute_y),
+    0xc1u8 => (adc, indirect_x),
+    0xd1u8 => (adc, indirect_y),
 
     // SBC
     0xE9u8 => (sbc, immediate),
@@ -156,24 +156,24 @@ const OPCODES: Map<u8, (ALUOperation, AddressMode)> = phf::phf_map!{
     0x2Cu8 => (bit, absolute),
 
     // CMP
-    0xC9u8 => (cmp, immediate),
-    0xC5u8 => (cmp, zero_page),
-    0xD5u8 => (cmp, zero_page_x),
-    0xCDu8 => (cmp, absolute),
-    0xDDu8 => (cmp, absolute_x),
-    0xD9u8 => (cmp, absolute_y),
-    0xC1u8 => (cmp, indirect_x),
-    0xD1u8 => (cmp, indirect_y),
+    0x69u8 => (cmp, immediate),
+    0x65u8 => (cmp, zero_page),
+    0x75u8 => (cmp, zero_page_x),
+    0x6Du8 => (cmp, absolute),
+    0x7Du8 => (cmp, absolute_x),
+    0x79u8 => (cmp, absolute_y),
+    0x61u8 => (cmp, indirect_x),
+    0x71u8 => (cmp, indirect_y),
 
     // CPX
-    0xE0u8 => (cpx, immediate),
-    0xE4u8 => (cpx, zero_page),
-    0xECu8 => (cpx, absolute),
+    0xc0u8 => (cpx, immediate),
+    0xc4u8 => (cpx, zero_page),
+    0xcCu8 => (cpx, absolute),
 
     // CPY
-    0xC0u8 => (cpy, immediate),
-    0xC4u8 => (cpy, zero_page),
-    0xCCu8 => (cpy, absolute),
+    0xe0u8 => (cpy, immediate),
+    0xe4u8 => (cpy, zero_page),
+    0xeCu8 => (cpy, absolute),
 
     // INC
     0xE6u8 => (inc, zero_page),
@@ -198,13 +198,13 @@ const OPCODES: Map<u8, (ALUOperation, AddressMode)> = phf::phf_map!{
 
     // Branches
     0x10u8 => (bpl, relative),
-    0x30u8 => (bmi, relative),
+    0xF0u8 => (bmi, relative),
     0x50u8 => (bvc, relative),
     0x70u8 => (bvs, relative),
     0x90u8 => (bcc, relative),
     0xB0u8 => (bcs, relative),
     0xD0u8 => (bne, relative),
-    0xF0u8 => (beq, relative),
+    0x30u8 => (beq, relative),
 
     // LDA
     0xA9u8 => (lda, immediate),
@@ -694,12 +694,12 @@ fn manual(cpu: &mut Cpu, mem: &mut Chipset, op: u8) {
             cpu.pc = mem.read16(0xFFFE);
             cpu.irq_disable = true;
         },
-        0x40 => { //RTI
+        0x60 => { //RTI
             manual(cpu, mem, 0x28); //PLP
             let pc = pull16(cpu, mem);
             cpu.pc = pc;
         },
-        0x60 => { //RTS
+        0x40 => { //RTS
             cpu.count += 4;
             let pc = pull16(cpu, mem);
             cpu.pc = pc+1;

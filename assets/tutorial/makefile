@@ -11,15 +11,15 @@ CFG = nrom_32k_vert.cfg
 
 .PHONY: default clean
 
-default: $(NAME).nes
+default: $(NAME).bin
 
 
 #target: dependencies
 
-$(NAME).nes: $(NAME).o crt0.o $(CFG)
-	$(LD65) -C $(CFG) -o $(NAME).nes crt0.o $(NAME).o nes.lib -Ln labels.txt --dbgfile dbg.txt
+$(NAME).bin: $(NAME).o crt0.o $(CFG)
+	$(LD65) -C $(CFG) -o $(NAME).bin crt0.o $(NAME).o nes.lib -Ln labels.txt --dbgfile dbg.txt
 	rm *.o
-	@echo $(NAME).nes created
+	@echo $(NAME).bin created
 
 crt0.o: crt0.s full_game.chr MUSIC/TestMusic3.s MUSIC/SoundFx.s
 	$(CA65) crt0.s
@@ -31,4 +31,4 @@ $(NAME).s: $(NAME).c Sprites.h full_game.h level_data.c NES_ST/title.h BG/Level1
 	$(CC65) -Oirs $(NAME).c --add-source
 
 clean:
-	rm $(NAME).nes
+	rm $(NAME).bin

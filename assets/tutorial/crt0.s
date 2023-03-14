@@ -112,11 +112,11 @@ DATA_PTR:			.res 2
 
 .segment "HEADER"
 
-    .byte $4e,$45,$53,$1a
+;    .byte $4e,$45,$53,$1a
 	.byte <NES_PRG_BANKS
 	.byte <NES_CHR_BANKS
-	.byte <NES_MIRRORING|(<NES_MAPPER<<4)
-	.byte <NES_MAPPER&$f0
+;	.byte <NES_MIRRORING|(<NES_MAPPER<<4)
+;	.byte <NES_MAPPER&$f0
 	.res 8,0
 
 

@@ -2,21 +2,17 @@
 
 A simple 8-bit emulator targeting wasm, written in rust, and designed as a microbenchmark for wasm engines.
 
-This is a port of a project that I wrote in my first year of uni to learn rust. As such, the code is not particularily nice or effeicient.
+This is a port of a project that I wrote in my first year of uni to learn rust. As such, the code is not particularly nice or efficient.
 
 This should hopefully be representative of a project that was quickly ported to wasm, without any optimization effort and without any biases towards the performance characteristics of wasm engines of today.
+
+The code included here is not compatible with any existing 8-bit system.
 
 ![](/screenshot.png?raw=true)
 
 # Try it out
 
 [https://justinmichaud.com/8bitbench/](https://justinmichaud.com/8bitbench/)
-
-# TODO
-
-- Better perf stats collection
-- Warmup
-- Verify resulting image
 
 # Building
 
@@ -30,7 +26,7 @@ Then add `"type": "module"` to rust/pkg/package.json (to support node)
 
 # Building the rom file
 
-This ensures that the assembler is also availible under an appropriate licence.
+This ensures that the assembler is also available under an appropriate license.
 
 ```
 assets/tutorial
@@ -74,7 +70,7 @@ Results on M1:
 - Chrome / Node: 1.5 ms/frame
 - Native: 0.9 ms / frame
 
-# Licence
+# License
 
 ```
 MIT License
@@ -100,7 +96,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-# Licence for dependencies
+# License for dependencies
 
 Some dependencies located in-tree have been modified.
 
@@ -122,7 +118,7 @@ Some dependencies located in-tree have been modified.
 
 - console_error_panic_hook: MIT https://github.com/rustwasm/console_error_panic_hook
 
-# Licence for rom file
+# License for rom file
 
 Assembler: Zlib https://github.com/cc65/cc65
 
